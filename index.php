@@ -29,22 +29,22 @@ header('Content-type: application/json; charset=UTF-8');
 
 
 $full_url = explode("/", $_SERVER["REQUEST_URI"]);
-
-
-if ($full_url[2] != "items") {
-    http_response_code(404);
-    exit;
-}
-
-// var_dump($full_url);
-// exit;
+$request = json_decode(file_get_contents('php://input'), true);
 
 $id = $full_url[3];
 
 $database = new Database($dbhost, $dbname, $dbuser, $dbpass);
 
-$database->getConnection();
+$schema = new Schema($database);
 
-$controller = new Controller;
+$controller = new Controller($schema);
 
-$controller->getRequest($_SERVER['REQUEST_METHOD'], $id);
+if ($full_url[2] == 'create_table') {
+    $controller->createTable($full_url[3], $request);
+}
+elseif ($full_url[2] == 'remove_table') {
+    $controller->dropTable($full_url[3]);
+}
+else {
+    $controller->getRequest($_SERVER['REQUEST_METHOD'], $full_url[2], $id);
+}
