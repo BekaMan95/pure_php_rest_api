@@ -29,7 +29,7 @@ header('Content-type: application/json; charset=UTF-8');
 
 
 $full_url = explode("/", $_SERVER["REQUEST_URI"]);
-$request = json_decode(file_get_contents('php://input'), true);
+$request = (array) json_decode(file_get_contents('php://input'), true);
 
 $id = $full_url[3];
 
@@ -46,5 +46,5 @@ elseif ($full_url[2] == 'remove_table') {
     $controller->dropTable($full_url[3]);
 }
 else {
-    $controller->getRequest($_SERVER['REQUEST_METHOD'], $full_url[2], $id);
+    $controller->getRequest($request, $_SERVER['REQUEST_METHOD'], $full_url[2], $id);
 }
