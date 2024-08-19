@@ -2,18 +2,18 @@
 
 // Host Name
 
-$dbhost = "localhost";
+$dbhost = "";
 
 // Host port number
 
-$dbport = 3306;
+$dbport = 0000;
 
 // Database Name
 
-$dbname = "api_database";
+$dbname = "";
 // username
 
-$dbuser = "root";
+$dbuser = "";
 
 // password
 
