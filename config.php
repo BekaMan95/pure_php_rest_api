@@ -4,9 +4,9 @@
 
 $dbhost = "";
 
-// Host port number
+// Host port number {optional}
 
-$dbport = 0000;
+$dbport = 0;
 
 // Database Name
 

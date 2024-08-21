@@ -5,7 +5,7 @@ This project is a simple PHP-based RESTful API built with Object-Oriented Progra
 ## Features
 
 - **Autoloading**: Automatically loads classes from the `src/Controller` and `src/Database` directories using `spl_autoload_register`.
-- **Database Interaction**: Uses PDO (PHP Data Objects) for secure interaction with the MySQL database.
+- **Database Interaction**: Uses PDO (PHP Database Objects) for secure interaction with the MySQL database.
 - **CRUD Operations**: Supports creating, reading, updating, and deleting records in the database.
 - **Error Handling**: Implements generic error handling class for error handling and returns JSON-formatted error responses.
 
@@ -32,6 +32,7 @@ This project is a simple PHP-based RESTful API built with Object-Oriented Progra
     // config.php
     $dbhost = 'localhost';
     $dbname = 'your_database_name';
+    $dbport = 1000;
     $dbuser = 'your_username';
     $dbpass = 'your_password';
     ```
@@ -73,7 +74,7 @@ This project is a simple PHP-based RESTful API built with Object-Oriented Progra
     xampp-control.exe
     ```
 
-    Navigate to `http://localhost/pure_php_rest_api/` in your API request sending tool to interact with the API.
+    Navigate to `http://localhost/{project_dir}/api` in your API request sending tool to interact with the API.
 
 ## Usage
 
@@ -82,25 +83,25 @@ This project is a simple PHP-based RESTful API built with Object-Oriented Progra
 - **Create Table**
 
     ```http
-    POST /create_table/{table_name}
+    POST /api/create_table/{table_name}
     ```
     Example Payload:
 
     ```json
     {
         "id": "id",
-        "string": "name",
-        "int": "age",
-        "float": "salary",
-        "bool": "is_married",
-        "timestamp": "created_at"
+        "name": "string",
+        "age": "int",
+        "salary": "float",
+        "is_married": "bool",
+        "created_at": "timestamp"
     }
     ```
 
 - **Drop Table**
 
     ```http
-    POST /remove_table/{table_name}
+    POST /api/remove_table/{table_name}
     ```
 
 - **Get Records**
@@ -130,7 +131,7 @@ This project is a simple PHP-based RESTful API built with Object-Oriented Progra
 - **New Record**
 
     ```http
-    POST /{table_name}
+    POST /api/{table_name}
     ```
     Example Payload:
 
@@ -145,7 +146,7 @@ This project is a simple PHP-based RESTful API built with Object-Oriented Progra
 - **Get a Record**
 
     ```http
-    GET /{table_name}/{id}
+    GET /api/{table_name}/{id}
     ```
     Example Response:
 
@@ -161,7 +162,7 @@ This project is a simple PHP-based RESTful API built with Object-Oriented Progra
 - **Update Record**
 
     ```http
-    PUT /{table_name}/{id}
+    PUT /api/{table_name}/{id}
     ```
     Example Payload:
 
@@ -175,7 +176,7 @@ This project is a simple PHP-based RESTful API built with Object-Oriented Progra
 - **Delete Record**
 
     ```http
-    DELETE /{table_name}/{id}
+    DELETE /api/{table_name}/{id}
     ```
 
 ### Error Handling
@@ -184,7 +185,7 @@ The API returns a JSON response with appropriate HTTP status codes for errors:
 
 ```json
 {
-    "status": "error",
+    "error code": 1045,
     "message": "Description of the error",
     "file": "/path/to/the/file.php",
     "line": 42

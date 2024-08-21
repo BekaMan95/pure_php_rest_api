@@ -26,20 +26,21 @@ class Controller {
 
         $attributes = '';
         foreach ($props as $key => $value) {
-            if (array_key_exists($key, $mapping)) {
-                $attributes .= $value . ' '. $mapping[$key] . ','; 
+            if (array_key_exists($value, $mapping)) {
+                $attributes .= $key . ' '. $mapping[$value] . ', '; 
             }
             else {
                 http_response_code(500);
                 echo json_encode([
-                    'message' => 'unknown data type found! please check again.',
+                    'message' => 'Unknown data type found! please check again.',
+                    "column" => $value,
                     'status' => 'failed'
                 ]);
                 exit;
             }
         }
 
-        $modified_attributes = rtrim($attributes, ',');
+        $modified_attributes = rtrim($attributes, ', ');
 
         $check = $this->schema->create_table($table_name, $modified_attributes);
         
