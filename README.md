@@ -107,7 +107,7 @@ This project is a simple PHP-based RESTful API built with Object-Oriented Progra
 - **Get Records**
 
     ```http
-    GET /{table_name}
+    GET /api/{table_name}
     ```
     Example Response:
 
